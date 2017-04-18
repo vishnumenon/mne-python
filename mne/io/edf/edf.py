@@ -339,7 +339,7 @@ def _get_edf_info(fname, stim_channel, annot, annotmap, eog, misc, exclude,
         nchan = int(fid.read(4).decode())
         channels = list(range(nchan))
         ch_names = [fid.read(16).strip().decode() for ch in channels]
-        exclude = [ch_names.index(idx) for idx in exclude]
+        exclude = [ch_names.index(idx) for idx in exclude if idx in ch_names]
         for ch in channels:
             fid.read(80)  # transducer
         units = [fid.read(8).strip().decode() for ch in channels]
